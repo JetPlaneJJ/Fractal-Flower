@@ -15,11 +15,32 @@ public class Koch
         t = new Turtle(frame);
         t.penDown();
         t.setHeading(0);
-        t.speed(9999999999999999999999.0);
-        t.hideTurtle();
-        drawFractal();
+        t.setX(-400.0);
+        t.setY(50.0);
+        t.speed(119.0);
+        //t.hideTurtle();
+        //drawFractal();
+        
+        //drawTriangle();
+        drawKochCurve(2, 200);
     }
     
+    public static void drawTriangle()
+    {
+    	t.penDown();
+    	t.setHeading(120);
+    	t.speed(5.0);
+    	t.forward(5);
+    	t.penDown();
+    	t.setHeading(120);
+    	t.speed(5.0);
+    	t.forward(5);
+    	t.penDown();
+    	t.setHeading(120);
+    	t.speed(1.0);
+    	t.forward(5);
+    	
+    }
     public static void changeTurtleColor()
     {
         t.setPenColor(new Color(t.getPenColor().getRGB() + 10));
@@ -27,18 +48,37 @@ public class Koch
 
     public static void drawKochCurve(int level_n, double length)
     {
-    	// TODO: PART 1: FILL OUT THIS METHOD
-    	//
-    	// Code up the following algorithm:
-    	//
-    	// Base case: level_n == 0:
-    	// Just draw a segment with the given length
-    	//
-    	// Recursive case: 
-    	// Call this method recursively to draw 4 segments of
-    	// level_n - 1, and with length / 3.  Between those
-    	// recursive calls, turn "some number of degrees"
-    	// (see the slide for an illustration)
+    	if (level_n == 0)
+    	{
+	    	t.forward(length);
+	    	return;
+    	}
+    	else if (level_n == 1)
+    	{
+    		t.setHeading(90);
+    		Color p = new Color(50);
+    		t.setColor(p);
+    		t.penDown();
+	    	t.speed(200.0);
+	    	drawKochCurve(level_n - 1, length/3);
+	    	
+	    	t.left(60);
+	    	drawKochCurve(level_n - 1, length/3);
+	    	
+	    	t.right(120);
+	    	drawKochCurve(level_n - 1, length/3);
+	    	
+	    	t.left(60);
+	    	drawKochCurve(level_n - 1, length/3);
+    	}
+    	else
+    	{
+    		t.setHeading(90);
+    		Color p = new Color(14);
+    		t.setColor(p);
+    		t.penDown();
+    		drawKochCurve(level_n - 1, length);
+    	}
     }    
 
     public static void drawFractal()
