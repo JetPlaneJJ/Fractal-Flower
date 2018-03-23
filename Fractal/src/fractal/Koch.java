@@ -15,14 +15,14 @@ public class Koch
         t = new Turtle(frame);
         t.penDown();
         t.setHeading(0);
-        t.setX(-400.0);
-        t.setY(50.0);
-        t.speed(119.0);
+        t.setX(0.0);
+        t.setY(-100.0);
+        t.speed(600.0);
         //t.hideTurtle();
         //drawFractal();
         
         //drawTriangle();
-        drawKochCurve(2, 200);
+        drawKochCurve(3, 400);
     }
     
     public static void drawTriangle()
@@ -51,11 +51,9 @@ public class Koch
     	if (level_n == 0)
     	{
 	    	t.forward(length);
-	    	return;
     	}
-    	else if (level_n == 1)
+    	else
     	{
-    		t.setHeading(90);
     		Color p = new Color(50);
     		t.setColor(p);
     		t.penDown();
@@ -70,14 +68,6 @@ public class Koch
 	    	
 	    	t.left(60);
 	    	drawKochCurve(level_n - 1, length/3);
-    	}
-    	else
-    	{
-    		t.setHeading(90);
-    		Color p = new Color(14);
-    		t.setColor(p);
-    		t.penDown();
-    		drawKochCurve(level_n - 1, length);
     	}
     }    
 
