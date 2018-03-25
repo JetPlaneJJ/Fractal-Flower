@@ -1,7 +1,9 @@
 package fractal;
 
 import java.awt.Color;
-
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.event.*;
 import ch.aplu.turtle.*;
 
 public class Koch
@@ -13,37 +15,37 @@ public class Koch
     {
         TurtleFrame frame = new TurtleFrame("Fractal", 1000, 700);
         t = new Turtle(frame);
+        Color x = new Color((int)(Math.random( )*256), 0, 0);
+        t.setPenColor(x);
+        double locationX = -500.0;
         t.penDown();
         t.setHeading(0);
-        t.setX(0.0);
-        t.setY(-100.0);
-        t.speed(600.0);
-        //t.hideTurtle();
-        //drawFractal();
-        
-        //drawTriangle();
-        drawKochCurve(3, 400);
+        t.penWidth(10);
+        t.setX(locationX);
+        t.setY(-150.0);
+        t.speed(999999999999999999999999999999999999999999999999999999999999999.0);
+        while (locationX < 400)
+        {
+        	drawFractal();
+	        locationX += 100;
+	        t.setX(locationX);
+        }
     }
     
     public static void drawTriangle()
     {
-    	t.penDown();
-    	t.setHeading(120);
-    	t.speed(5.0);
-    	t.forward(5);
-    	t.penDown();
-    	t.setHeading(120);
-    	t.speed(5.0);
-    	t.forward(5);
-    	t.penDown();
-    	t.setHeading(120);
-    	t.speed(1.0);
-    	t.forward(5);
+    	t.left(60);
+    	t.forward(40);
+    	t.right(120);
+    	t.forward(40);
+    	t.right(120);
+    	t.forward(40);
     	
     }
     public static void changeTurtleColor()
     {
-        t.setPenColor(new Color(t.getPenColor().getRGB() + 10));
+    	Color x = new Color((int)(Math.random( )*256), (int)(Math.random( )*256), (int)(Math.random( )*256));
+        t.setPenColor(x);
     }
 
     public static void drawKochCurve(int level_n, double length)
@@ -54,10 +56,7 @@ public class Koch
     	}
     	else
     	{
-    		Color p = new Color(50);
-    		t.setColor(p);
-    		t.penDown();
-	    	t.speed(200.0);
+    		changeTurtleColor();
 	    	drawKochCurve(level_n - 1, length/3);
 	    	
 	    	t.left(60);
@@ -73,12 +72,19 @@ public class Koch
 
     public static void drawFractal()
     {
-    	// TODO: PART 2: MODIFY THIS METHOD
-    	//
-    	// Generate a Koch *snowflake* by calling drawKochCurve 3 times
-    	// (same level and length), with 60 degree angles on the *inside*
-    	// (like an equilateral triangle).  No additional recursion necessary.
+    	drawKochCurve(3, baseLength);
+        t.right(90);
+        
+        drawKochCurve(3, baseLength);
+        t.right(90);
+        
+        drawKochCurve(3, baseLength);
+        t.right(90);
 
-        drawKochCurve(10, baseLength);
+        drawKochCurve(3, baseLength);
+        t.right(90);
     }
+
+
 }
+
