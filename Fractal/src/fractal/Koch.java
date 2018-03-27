@@ -67,8 +67,16 @@ public class Koch
     public static void changeTurtleColor()
     {
     	//Color x = new Color((int)(Math.random( )*256), (int)(Math.random( )*256), (int)(Math.random( )*256));
-        Color x = new Color (colorRed++, 0,0);
-    	t.setPenColor(x);
+        if (colorRed < 256)
+        {
+			Color x = new Color (colorRed++, 0,0);
+			t.setPenColor(x);
+        }
+        else
+        {
+        	Color x = new Color (colorRed--, 0,0);
+			t.setPenColor(x);
+        }
     }
     public static void drawKochCurve(int level_n, double length)
     {
