@@ -22,6 +22,7 @@ public class Koch
         t.penDown();
         t.hideTurtle();
         
+        
         Color x = new Color (colorRed, 0,0);
     	t.setPenColor(x);
         
