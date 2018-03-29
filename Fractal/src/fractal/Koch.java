@@ -20,7 +20,7 @@ public class Koch
         t.setY(locationY);
         t.speed(999999999999999999999999999999999999999999999999999999999999999.0);
         t.penDown();
-        t.hideTurtle();
+        //t.hideTurtle();
         
         
         Color x = new Color (colorRed, 0,0);
