@@ -1,14 +1,14 @@
 package fractal;
-
 import java.awt.Color;
 import ch.aplu.turtle.*;
-
 public class Koch
 {
     private static double baseLength = 50;
     private static Turtle t;
     private static int colorRed = (int) Math.random()*256;
     
+    // Creates an animation of lines and circles transforming into a red and black
+    // flower shape.
     public static void main(String[] args)
     {
         TurtleFrame frame = new TurtleFrame("Fractal", 1000, 700);
@@ -21,39 +21,36 @@ public class Koch
         t.speed(999999999999999999999999999999999999999999999999999999999999999.0);
         t.penDown();
         //t.hideTurtle();
-        
-        
         Color x = new Color (colorRed, 0,0);
-    	t.setPenColor(x);
-        
+    	t.setPenColor(x);  
         while (true)
         {
-        	while (locationX < 200)
-            {
+	    	while (locationX < 200)
+            	{
         		t.penWidth(1);
         		drawFractal();
-    	        locationX *= 2;
-    	        t.setX(locationX);
-    	        t.rt(90);
-    	        t.penWidth(5);
-    	        t.leftCircle(baseLength);
-    	        baseLength++;
-            }
+    	        	locationX *= 2;
+    	        	t.setX(locationX);
+    	        	t.rt(90);
+    	        	t.penWidth(5);
+    	        	t.leftCircle(baseLength);
+    	        	baseLength++;
+            	}
         	while (locationX > -200)
         	{
         		t.penWidth(1);
         		drawFractal();
-    	        locationX *= 0.5 - 2;
-    	        t.setX(locationX);
-    	        t.lt(90);
-    	        t.penWidth(5);
-    	        t.rightCircle(baseLength);
-    	        baseLength++;
+    	        	locationX *= 0.5 - 2;
+			t.setX(locationX);
+			t.lt(90);
+			t.penWidth(5);
+			t.rightCircle(baseLength);
+			baseLength++;
         	}
-        }
-        
+	}   
     }
     
+    // Draws a Triangle shape.
     public static void drawTriangle()
     {
     	t.left(60);
@@ -64,20 +61,24 @@ public class Koch
     	t.forward(40);
     	
     }
+     
+    // Changes the color of the pen.
     public static void changeTurtleColor()
     {
     	//Color x = new Color((int)(Math.random( )*256), (int)(Math.random( )*256), (int)(Math.random( )*256));
         if (colorRed < 256)
         {
-			Color x = new Color (colorRed++, 0,0);
-			t.setPenColor(x);
+		Color x = new Color (colorRed++, 0,0);
+		t.setPenColor(x);
         }
         else
         {
         	Color x = new Color (colorRed--, 0,0);
-			t.setPenColor(x);
+		t.setPenColor(x);
         }
     }
+	
+    // Draws a Koch Curve recursively.
     public static void drawKochCurve(int level_n, double length)
     {
     	if (level_n == 0)
@@ -98,6 +99,7 @@ public class Koch
     	}
     }    
 
+    // Draws a Fractal Shape
     public static void drawFractal()
     {
     	changeTurtleColor();
@@ -109,22 +111,14 @@ public class Koch
         t.right(45);
         drawKochCurve(6, baseLength);
         t.right(45);
-        
         //changeTurtleColor();
     	drawKochCurve(6, baseLength);
         t.right(45);
-        
         drawKochCurve(4, baseLength);
         t.right(45);
-        
         drawKochCurve(3, baseLength);
         t.right(45);
-
         drawKochCurve(8, baseLength);
         t.right(180);
     }
-
-    
-
 }
-
